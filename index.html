@@ -3,121 +3,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kabbya46</title>
+  <title>Ghost of Tsushima Live Wallpaper</title>
   <style>
-    body {
+    /* Preloader */
+    #preloader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #000;
+      color: #fff;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      margin: 0;
-      overflow: hidden;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      color: #eee;
-      text-align: center;
+      font-size: 2rem;
+      z-index: 9999;
     }
 
-    /* === Video Background === */
+    /* Background Video */
     #bg-video {
       position: fixed;
-      top: 0;
-      left: 0;
-      min-width: 100%;
-      min-height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       object-fit: cover;
-      z-index: -1; /* send behind content */
-      filter: brightness(0.6); /* darken so text is readable */
+      z-index: -4;
     }
 
-    h1 {
-      font-size: 2.5rem;
-      color: #fff;
-      text-shadow: 0 0 15px #ffffff55;
-      margin-bottom: 40px;
-      letter-spacing: 2px;
-      z-index: 2;
+    /* Dark Overlay */
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -3;
     }
 
-    a {
-      font-size: 2rem;
-      text-decoration: none;
-      border: 2px solid;
-      padding: 0.6rem 1.4rem;
-      border-radius: 14px;
-      margin: 15px;
-      transition: all 0.4s ease;
-      z-index: 2;
+    /* Stars + Aurora */
+    .stars, .stars2, .stars3, .aurora {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .stars {
+      background: transparent url("https://www.script-tutorials.com/demos/360/images/stars.png") repeat top center;
+      animation: moveStars 200s linear infinite;
+    }
+    .stars2 {
+      background: transparent url("https://www.script-tutorials.com/demos/360/images/stars2.png") repeat top center;
+      animation: moveStars 400s linear infinite;
+    }
+    .stars3 {
+      background: transparent url("https://www.script-tutorials.com/demos/360/images/stars3.png") repeat top center;
+      animation: moveStars 600s linear infinite;
+    }
+
+    @keyframes moveStars {
+      from { background-position: 0 0; }
+      to { background-position: -10000px 5000px; }
+    }
+
+    .aurora {
+      background: radial-gradient(circle at 50% 50%, rgba(0,255,255,0.15), transparent 70%);
+      mix-blend-mode: screen;
+      animation: pulseAurora 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseAurora {
+      from { opacity: 0.3; }
+      to { opacity: 0.7; }
+    }
+
+    /* Floating Blocks */
+    .blocks {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .block {
+      position: absolute;
+      width: 50px; height: 50px;
+      background: rgba(255, 255, 255, 0.2);
+      animation: floatUp 20s linear infinite;
+      bottom: -100px;
+    }
+
+    .block:nth-child(1) { left: 10%; animation-duration: 18s; }
+    .block:nth-child(2) { left: 30%; animation-duration: 22s; }
+    .block:nth-child(3) { left: 50%; animation-duration: 20s; }
+    .block:nth-child(4) { left: 70%; animation-duration: 25s; }
+    .block:nth-child(5) { left: 90%; animation-duration: 19s; }
+
+    @keyframes floatUp {
+      from { transform: translateY(0) rotate(0deg); opacity: 0.5; }
+      to   { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Content */
+    .content {
       position: relative;
-      backdrop-filter: blur(2px);
-    }
-
-    a.movies { color: #4da6ff; border-color: #4da6ff; }
-    a.movies:hover { background: #4da6ff; color: #111; box-shadow: 0 0 20px #4da6ff; }
-
-    a.sports { color: #00ff99; border-color: #00ff99; }
-    a.sports:hover { background: #00ff99; color: #111; box-shadow: 0 0 20px #00ff99; }
-
-    a.anime { color: #ff66cc; border-color: #ff66cc; }
-    a.anime:hover { background: #ff66cc; color: #111; box-shadow: 0 0 20px #ff66cc; }
-
-    .about-me {
-      z-index: 2;
+      z-index: 10;
       color: #fff;
       text-align: center;
-      margin-top: 30px;
+      margin-top: 20vh;
+      font-family: Arial, sans-serif;
     }
-
-    .about-me h2 {
-      font-size: 2rem;
-      color: #ffcc00;
-      text-shadow: 0 0 15px #ffcc0055;
+    .content h1 {
+      font-size: 3rem;
       margin-bottom: 10px;
     }
-
-    .about-me p { font-size: 1.2rem; margin-bottom: 15px; }
-
-    .about-me a {
-      display: inline-block;
-      margin: 5px 10px;
-      font-size: 1.5rem;
-      color: #4da6ff;
-      border: 2px solid #4da6ff;
-      padding: 0.4rem 1rem;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: all 0.3s;
-    }
-
-    .about-me a:hover {
-      background: #4da6ff;
-      color: #111;
-      box-shadow: 0 0 20px #4da6ff;
+    .content p {
+      font-size: 1.2rem;
+      opacity: 0.9;
     }
   </style>
 </head>
 <body>
-  <!-- Video Background -->
+  <!-- Preloader -->
+  <div id="preloader">Loading…</div>
+
+  <!-- Background Video -->
   <video autoplay muted loop playsinline id="bg-video">
     <source src="ghost-of-tsushima.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
+    Your browser does not support the video tag.
   </video>
 
-  <!-- Title -->
-  <h1>WELCOME TO NAGASHI</h1>
+  <!-- Dark Overlay -->
+  <div class="overlay"></div>
 
-  <!-- Main Buttons -->
-  <a class="movies" href="https://moviebox.ph">🎬 Watch Movies / Dramas</a>
-  <a class="sports" href="https://tv-shihab.xyz/">⚽ Watch Sports</a>
-  <a class="anime" href="https://animepahe.si/">🎌 Watch Anime</a>
+  <!-- Stars + Aurora -->
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="stars3"></div>
+  <div class="aurora"></div>
 
-  <!-- About Me -->
-  <div class="about-me">
-    <h2>About Me</h2>
-    <p>Hi! I’m Kabbya Chatterjee. Connect with me:</p>
-    <a href="https://www.facebook.com/kabbya.chatterjee.none" target="_blank">📘 Facebook</a>
-    <a href="https://www.linkedin.com/in/kabbya-chatterjee/" target="_blank">💼 LinkedIn</a>
-    <a href="https://www.instagram.com/codex_chronicles" target="_blank">📸 Instagram</a>
+  <!-- Floating Blocks -->
+  <div class="blocks">
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
+    <div class="block"></div>
   </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <h1>Ghost of Tsushima</h1>
+    <p>Live Wallpaper Demo 🎮</p>
+  </div>
+
+  <script>
+    const video = document.getElementById('bg-video');
+    const preloader = document.getElementById('preloader');
+
+    // Hide preloader once the video is playing
+    video.addEventListener('playing', () => {
+      preloader.style.display = 'none';
+    });
+  </script>
 </body>
 </html>
