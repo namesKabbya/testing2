@@ -3,128 +3,183 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ghost of Tsushima Live Wallpaper</title>
+  <title>Welcome to Heaven 🌌</title>
   <style>
-    /* Preloader */
-    #preloader {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: #000;
-      color: #fff;
+    /* === BASE LAYOUT === */
+    body {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
-      z-index: 9999;
+      min-height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #eee;
+      text-align: center;
     }
 
-    /* Background Video */
+    /* === VIDEO BACKGROUND === */
     #bg-video {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      z-index: -4;
+      z-index: -1;
     }
 
-    /* Dark Overlay */
+    /* Dark overlay for readability */
     .overlay {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: -3;
+      background: rgba(0,0,0,0.55);
+      z-index: 0;
     }
 
-    /* Stars + Aurora */
-    .stars, .stars2, .stars3, .aurora {
+    /* === PRELOADER === */
+    #preloader {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: -2;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: #fff;
+      z-index: 9999;
+      animation: fadeOut 1s ease forwards;
+      animation-delay: 3s; /* stay visible ~3s then fade */
     }
 
-    .stars {
-      background: transparent url("https://www.script-tutorials.com/demos/360/images/stars.png") repeat top center;
-      animation: moveStars 200s linear infinite;
-    }
-    .stars2 {
-      background: transparent url("https://www.script-tutorials.com/demos/360/images/stars2.png") repeat top center;
-      animation: moveStars 400s linear infinite;
-    }
-    .stars3 {
-      background: transparent url("https://www.script-tutorials.com/demos/360/images/stars3.png") repeat top center;
-      animation: moveStars 600s linear infinite;
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
     }
 
-    @keyframes moveStars {
-      from { background-position: 0 0; }
-      to { background-position: -10000px 5000px; }
+    /* Animate Loading text */
+    #preloader span {
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0% { opacity: 0.3; }
+      50% { opacity: 1; }
+      100% { opacity: 0.3; }
     }
 
-    .aurora {
-      background: radial-gradient(circle at 50% 50%, rgba(0,255,255,0.15), transparent 70%);
-      mix-blend-mode: screen;
-      animation: pulseAurora 10s ease-in-out infinite alternate;
+    /* === HEADING === */
+    h1 {
+      font-size: 2.5rem;
+      color: #fff;
+      text-shadow: 0 0 15px #ffffff55;
+      margin-bottom: 40px;
+      letter-spacing: 2px;
+      animation: glowTitle 3s ease-in-out infinite alternate;
+      z-index: 1;
     }
 
-    @keyframes pulseAurora {
-      from { opacity: 0.3; }
-      to { opacity: 0.7; }
+    @keyframes glowTitle {
+      from { text-shadow: 0 0 15px #4da6ff55, 0 0 25px #4da6ff33; }
+      to { text-shadow: 0 0 25px #ff66ccaa, 0 0 45px #00ff99aa; }
     }
 
-    /* Floating Blocks */
-    .blocks {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .block {
-      position: absolute;
-      width: 50px; height: 50px;
-      background: rgba(255, 255, 255, 0.2);
-      animation: floatUp 20s linear infinite;
-      bottom: -100px;
-    }
-
-    .block:nth-child(1) { left: 10%; animation-duration: 18s; }
-    .block:nth-child(2) { left: 30%; animation-duration: 22s; }
-    .block:nth-child(3) { left: 50%; animation-duration: 20s; }
-    .block:nth-child(4) { left: 70%; animation-duration: 25s; }
-    .block:nth-child(5) { left: 90%; animation-duration: 19s; }
-
-    @keyframes floatUp {
-      from { transform: translateY(0) rotate(0deg); opacity: 0.5; }
-      to   { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
-    }
-
-    /* Content */
-    .content {
+    /* === BUTTON STYLES === */
+    a {
+      font-size: 1.5rem;
+      text-decoration: none;
+      border: 2px solid;
+      padding: 0.6rem 1.4rem;
+      border-radius: 14px;
+      margin: 10px;
+      transition: all 0.4s ease;
+      z-index: 1;
+      backdrop-filter: blur(2px);
       position: relative;
-      z-index: 10;
+    }
+
+    a.movies {
+      color: #4da6ff;
+      border-color: #4da6ff;
+      box-shadow: 0 0 15px #4da6ff55;
+    }
+    a.movies:hover {
+      background: #4da6ff;
+      color: #111;
+      box-shadow: 0 0 35px #4da6ff;
+      transform: scale(1.1);
+    }
+
+    a.sports {
+      color: #00ff99;
+      border-color: #00ff99;
+      box-shadow: 0 0 15px #00ff9955;
+    }
+    a.sports:hover {
+      background: #00ff99;
+      color: #111;
+      box-shadow: 0 0 35px #00ff99;
+      transform: scale(1.1);
+    }
+
+    a.anime {
+      color: #ff66cc;
+      border-color: #ff66cc;
+      box-shadow: 0 0 15px #ff66cc55;
+    }
+    a.anime:hover {
+      background: #ff66cc;
+      color: #111;
+      box-shadow: 0 0 35px #ff66cc;
+      transform: scale(1.1);
+    }
+
+    /* === ABOUT ME SECTION === */
+    .about-me {
+      z-index: 1;
       color: #fff;
       text-align: center;
-      margin-top: 20vh;
-      font-family: Arial, sans-serif;
+      margin-top: 40px;
     }
-    .content h1 {
-      font-size: 3rem;
+    .about-me h2 {
+      font-size: 2rem;
+      color: #ffcc00;
+      text-shadow: 0 0 15px #ffcc0055;
       margin-bottom: 10px;
     }
-    .content p {
+    .about-me p {
       font-size: 1.2rem;
-      opacity: 0.9;
+      margin-bottom: 15px;
+    }
+    .about-me a {
+      display: inline-block;
+      margin: 5px 10px;
+      font-size: 1.2rem;
+      color: #4da6ff;
+      border: 2px solid #4da6ff;
+      padding: 0.4rem 1rem;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 0 10px #4da6ff55;
+    }
+    .about-me a:hover {
+      background: #4da6ff;
+      color: #111;
+      box-shadow: 0 0 30px #4da6ff;
+      transform: scale(1.1);
+    }
+
+    .about-me img {
+      width: 18px;
+      height: 18px;
+      vertical-align: middle;
+      margin-right: 6px;
     }
   </style>
 </head>
 <body>
   <!-- Preloader -->
-  <div id="preloader">Loading…</div>
+  <div id="preloader"><span>Loading…</span></div>
 
   <!-- Background Video -->
   <video autoplay muted loop playsinline id="bg-video">
@@ -132,38 +187,30 @@
     Your browser does not support the video tag.
   </video>
 
-  <!-- Dark Overlay -->
+  <!-- Overlay -->
   <div class="overlay"></div>
 
-  <!-- Stars + Aurora -->
-  <div class="stars"></div>
-  <div class="stars2"></div>
-  <div class="stars3"></div>
-  <div class="aurora"></div>
+  <!-- Title -->
+  <h1>🌠 Welcome to Heaven, Freebies 🌠</h1>
 
-  <!-- Floating Blocks -->
-  <div class="blocks">
-    <div class="block"></div>
-    <div class="block"></div>
-    <div class="block"></div>
-    <div class="block"></div>
-    <div class="block"></div>
+  <!-- Main Buttons -->
+  <a class="movies" href="https://moviebox.ph">🎬 Watch Movies / Dramas</a>
+  <a class="sports" href="https://tv-shihab.xyz/">⚽ Watch Sports</a>
+  <a class="anime" href="https://animepahe.si/">🎌 Watch Anime</a>
+
+  <!-- About Me -->
+  <div class="about-me">
+    <h2>About Me</h2>
+    <p>Hi! I’m Kabbya Chatterjee. Connect with me:</p>
+    <a class="btn facebook" href="https://www.facebook.com/kabbya.chatterjee.none" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"> Facebook
+    </a>
+    <a class="btn linkedin" href="https://www.linkedin.com/in/kabbya-chatterjee/" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/LinkedIn_Logo.svg"> LinkedIn
+    </a>
+    <a class="btn instagram" href="https://www.instagram.com/codex_chronicles" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg"> Instagram
+    </a>
   </div>
-
-  <!-- Main Content -->
-  <div class="content">
-    <h1>Ghost of Tsushima</h1>
-    <p>Live Wallpaper Demo 🎮</p>
-  </div>
-
-  <script>
-    const video = document.getElementById('bg-video');
-    const preloader = document.getElementById('preloader');
-
-    // Hide preloader once the video is playing
-    video.addEventListener('playing', () => {
-      preloader.style.display = 'none';
-    });
-  </script>
 </body>
 </html>
