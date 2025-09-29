@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Welcome to Heaven 🌌</title>
   <style>
-    /* === BASE LAYOUT === */
     body {
       display: flex;
       flex-direction: column;
@@ -19,7 +18,7 @@
       text-align: center;
     }
 
-    /* === VIDEO BACKGROUND === */
+    /* Video Background */
     #bg-video {
       position: fixed;
       top: 0; left: 0;
@@ -28,7 +27,6 @@
       z-index: -1;
     }
 
-    /* Dark overlay */
     .overlay {
       position: fixed;
       top: 0; left: 0;
@@ -37,7 +35,7 @@
       z-index: 0;
     }
 
-    /* === PRELOADER === */
+    /* Preloader */
     #preloader {
       position: fixed;
       top: 0; left: 0;
@@ -64,7 +62,7 @@
       100% { opacity: 0.3; }
     }
 
-    /* === HEADING === */
+    /* Heading */
     h1 {
       font-size: 2.5rem;
       color: #fff;
@@ -79,7 +77,7 @@
       to { text-shadow: 0 0 25px #ff66ccaa, 0 0 45px #00ff99aa; }
     }
 
-    /* === BUTTON STYLES === */
+    /* Main Buttons */
     a {
       font-size: 1.5rem;
       text-decoration: none;
@@ -126,7 +124,7 @@
       box-shadow: 0 0 35px #ff66cc; transform: scale(1.1);
     }
 
-    /* === FLOATING ANIMATIONS === */
+    /* Floating Animations */
     @keyframes float1 {
       0% { transform: translate(0, 0); }
       50% { transform: translate(-15px, -25px); }
@@ -143,7 +141,7 @@
       100% { transform: translate(15px, -10px); }
     }
 
-    /* === ABOUT ME === */
+    /* About Me */
     .about-me {
       z-index: 1;
       color: #fff;
@@ -185,8 +183,8 @@
       margin-right: 6px;
     }
 
-    /* === UNMUTE BUTTON === */
-    #unmute-btn {
+    /* Mute/Unmute Button */
+    #mute-btn {
       position: fixed;
       bottom: 20px;
       right: 20px;
@@ -201,7 +199,7 @@
       box-shadow: 0 0 15px #4da6ff55;
       transition: all 0.3s ease;
     }
-    #unmute-btn:hover {
+    #mute-btn:hover {
       background: #4da6ff;
       color: #111;
       box-shadow: 0 0 25px #4da6ff;
@@ -245,17 +243,21 @@
     </a>
   </div>
 
-  <!-- Unmute Button -->
-  <button id="unmute-btn">🔊 Tap to Unmute</button>
+  <!-- Mute/Unmute Button -->
+  <button id="mute-btn">🔊 Unmute</button>
 
   <script>
     const video = document.getElementById("bg-video");
-    const btn = document.getElementById("unmute-btn");
+    const btn = document.getElementById("mute-btn");
 
     btn.addEventListener("click", () => {
-      video.muted = false;
-      video.play();
-      btn.style.display = "none"; // hide after unmuting
+      if (video.muted) {
+        video.muted = false;
+        btn.textContent = "🔇 Mute";
+      } else {
+        video.muted = true;
+        btn.textContent = "🔊 Unmute";
+      }
     });
   </script>
 </body>
