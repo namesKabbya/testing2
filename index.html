@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Heaven 🌌</title>
+  <style>
+    /* === BODY AND SKY === */
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(to top, #ff9a9e 0%, #fad0c4 50%, #a18cd1 100%);
+      animation: skyShift 60s ease-in-out infinite alternate;
+      color: #fff;
+      text-align: center;
+    }
+
+    @keyframes skyShift {
+      0% { background: linear-gradient(to top, #ff9a9e 0%, #fad0c4 50%, #a18cd1 100%); }
+      50% { background: linear-gradient(to top, #a1c4fd 0%, #c2e9fb 50%, #667eea 100%); }
+      100% { background: linear-gradient(to top, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%); }
+    }
+
+    /* === FLOATING BUTTONS === */
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      padding: 0.6rem 1.2rem;
+      margin: 15px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 0 15px #00000033;
+      transition: all 0.3s ease;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .btn img {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .btn:hover { transform: scale(1.1); filter: brightness(1.2); }
+
+    /* === BRAND COLORS === */
+    .facebook { background-color: #1877f2; box-shadow: 0 0 25px #1877f2; }
+    .linkedin { background-color: #0a66c2; box-shadow: 0 0 25px #0a66c2; }
+    .instagram { background-color: #e1306c; box-shadow: 0 0 25px #e1306c; }
+
+    /* === TITLE === */
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      text-shadow: 0 0 15px #fff;
+      animation: glowTitle 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes glowTitle {
+      from { text-shadow: 0 0 15px #ff9a9e, 0 0 25px #fad0c4; }
+      to { text-shadow: 0 0 25px #a18cd1, 0 0 45px #c2e9fb; }
+    }
+
+    /* === ABOUT ME SECTION === */
+    .about-me {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .about-me p {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      text-shadow: 0 0 5px #00000033;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌌 Welcome to Heaven, Freebies 🌌</h1>
+
+  <!-- About Me Section -->
+  <div class="about-me">
+    <p>Hi! I’m Kabbya Chatterjee. Connect with me:</p>
+    <a class="btn facebook" href="https://www.facebook.com/kabbya.chatterjee.none?rdid=Er3F8weAjvemu08r&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16xZNatAer%2F#" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" alt="Facebook Logo"> Facebook
+    </a>
+    <a class="btn linkedin" href="https://www.linkedin.com/in/kabbya-chatterjee/" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/LinkedIn_Logo.svg" alt="LinkedIn Logo"> LinkedIn
+    </a>
+    <a class="btn instagram" href="https://www.instagram.com/codex_chronicles?igsh=YXZ4NHp5anB5Z2s4" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram Logo"> Instagram
+    </a>
+  </div>
+</body>
+</html>
